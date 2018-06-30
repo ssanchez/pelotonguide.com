@@ -1,10 +1,66 @@
 {
-	"extends": [
-		"eslint:recommended",
-		"prettier"
-	],
-	"plugins": ["prettier"],
+	"parser": "babel-eslint",
+	"extends": "airbnb",
+	"env": {
+		"browser": true,
+		"mocha": true,
+	},
+	"globals": {
+		"graphql": false
+	},
 	"rules": {
-		"prettier/prettier": "error"
+		"arrow-body-style": 0,
+		"arrow-parens": [1, "always"],
+		"default-case": 0,
+		"global-require": 0,
+		"import/extensions": 0,
+		"import/no-extraneous-dependencies": 0,
+		"import/no-unresolved": 0,
+		"import/prefer-default-export": 0,
+		"indent": [1, "tab", {
+			"SwitchCase": 1
+		}],
+		"jsx-a11y/anchor-is-valid": 0,
+		"jsx-quotes": [1, "prefer-single"],
+		"max-len": [1, 120, 4],
+		"no-tabs": 0,
+		"no-unused-vars": 1,
+		"object-curly-newline": 0,
+		"quote-props": [2, "consistent-as-needed"],
+		"quotes": 0,
+		"radix": 0,
+		"react/boolean-prop-naming": 1,
+		"react/forbid-component-props": 0,
+		"react/forbid-prop-types": 0,
+		"react/jsx-boolean-value": [1, "always"],
+		"react/jsx-indent": [1, "tab"],
+		"react/jsx-indent-props": [1, "tab"],
+		"react/jsx-filename-extension": [1, {
+			"extensions": [".js", ".jsx"]
+		}],
+		"react/jsx-no-bind": [2, {
+			"ignoreRefs": true,
+			"allowArrowFunctions": false,
+			"allowBind": false
+		}],
+		"react/jsx-sort-props": [1, {
+			"ignoreCase": true,
+			"callbacksLast": false,
+			"shorthandFirst": false,
+			"shorthandLast": false,
+			"noSortAlphabetically": false,
+			"reservedFirst": true
+		}],
+		"react/no-danger": 0,
+		"react/no-direct-mutation-state": 2,
+		"react/prefer-stateless-function": 0,
+		"react/require-default-props": 0,
+		"react/sort-prop-types": [1, {
+			"ignoreCase": true,
+			"callbacksLast": false,
+			"requiredFirst": false
+		}],
+		"semi": [2, "never"],
+		"space-infix-ops": 0
 	}
 }
