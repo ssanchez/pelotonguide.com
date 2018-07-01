@@ -6,6 +6,7 @@
   "dependencies": {
     "gatsby": "next",
     "gatsby-plugin-react-helmet": "next",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-helmet": "^5.2.0"
@@ -17,7 +18,6 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write 'src/**/*.js'",
     "lint": "eslint --ext .js,.jsx .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,8 +26,7 @@
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.10.0",
-    "prettier": "^1.12.0"
+    "eslint-plugin-react": "^7.10.0"
   },
   "repository": {
     "type": "git",

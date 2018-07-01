@@ -40,9 +40,10 @@
 		}],
 		"react/jsx-no-bind": [2, {
 			"ignoreRefs": true,
-			"allowArrowFunctions": false,
+			"allowArrowFunctions": true,
 			"allowBind": false
 		}],
+		"react/jsx-one-expression-per-line": 0,
 		"react/jsx-sort-props": [1, {
 			"ignoreCase": true,
 			"callbacksLast": false,
