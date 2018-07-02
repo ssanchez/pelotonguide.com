@@ -27,6 +27,7 @@ const Header = ({ siteTitle }) => (
 					{siteTitle}
 				</Link>
 			</h1>
+			<small>the unofficial home rider&apos;s guide to all things peloton</small>
 		</div>
 	</div>
 )

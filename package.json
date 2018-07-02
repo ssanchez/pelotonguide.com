@@ -4,11 +4,16 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "babel-plugin-emotion": "^9.2.4",
+    "emotion": "^9.2.4",
+    "emotion-server": "^9.2.4",
     "gatsby": "next",
+    "gatsby-plugin-emotion": "^1.1.17",
     "gatsby-plugin-react-helmet": "next",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-emotion": "^9.2.4",
     "react-helmet": "^5.2.0"
   },
   "keywords": [
