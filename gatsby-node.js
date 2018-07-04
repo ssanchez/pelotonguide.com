@@ -18,11 +18,21 @@ exports.createPages = ({ graphql, actions }) => {
 							slug
 						}
 					}
+				},
+				allContentfulCoach(limit: 1000) {
+					edges {
+						node {
+							id
+							name
+						}
+					}
 				}
 			}
 		`)
 			.then((result) => {
 				if (result.errors) {
+					// eslint-disable-next-line no-console
+					result.errors.forEach((e) => console.error(e.toString()))
 					reject(result.errors)
 				}
 
