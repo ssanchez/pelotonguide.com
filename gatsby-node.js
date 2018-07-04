@@ -18,14 +18,6 @@ exports.createPages = ({ graphql, actions }) => {
 							slug
 						}
 					}
-				},
-				allContentfulCoach(limit: 1000) {
-					edges {
-						node {
-							id
-							name
-						}
-					}
 				}
 			}
 		`)
