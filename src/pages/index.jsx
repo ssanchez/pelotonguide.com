@@ -24,6 +24,7 @@ const IndexPage = () => (
 			return (
 				<>
 					<Layout>
+						<Link to='theme-ride-guide'>Theme ride guide</Link>
 						{posts.map(({ node }) => (
 							<div>
 								<Link to={node.slug}>
