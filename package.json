@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "peloton-guide",
+  "description": "The unofficial home rider's guide to all things Peloton.",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Spencer Sanchez <dev@spencersanchez.com>",
   "dependencies": {
     "babel-plugin-emotion": "^9.2.4",
     "emotion": "^9.2.4",
@@ -36,6 +36,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/ssanchez/pelotonguide.com"
   }
 }
