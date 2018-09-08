@@ -12,8 +12,8 @@ const IndexPage = ({ data }) => {
 		<>
 			<Layout>
 				<Link to='theme-ride-guide'>Theme ride guide</Link>
-				{posts.map(({ node }) => (
-					<div>
+				{posts.map(({ node }, i) => (
+					<div key={i}>
 						<Link to={node.slug}>
 							{node.slug}
 						</Link>

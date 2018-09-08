@@ -25,7 +25,7 @@ const Layout = ({ children }) => (
 				<>
 					<Helmet
 						meta={[
-							{ name:  'description', content: `The unofficial home rider's guide to all things Peloton. Updated Peloton information such as theme ride listings and coach social media links.`},
+							{ name: 'description', content: `The unofficial home rider's guide to all things Peloton. Updated Peloton information such as theme ride listings and coach social media links.` },
 							{ name: 'keywords', content: 'sample, something' },
 						]}
 						title={title}
