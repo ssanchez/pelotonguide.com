@@ -7,6 +7,7 @@ import {
 	Table,
 } from 'react-virtualized'
 import { get } from 'lodash'
+import format from 'date-fns/format'
 import styled from 'react-emotion'
 import Layout from 'components/Layout'
 import './theme-ride-guide.css'
@@ -21,6 +22,8 @@ const CoachPic = styled.img`
 `
 
 class RidesPage extends Component {
+	dateRenderer = ({ cellData }) => format(new Date(cellData), 'ddd MM/DD/YY')
+
 	imageCellRenderer = ({ cellData }) => (
 		cellData
 			? (
@@ -89,14 +92,20 @@ class RidesPage extends Component {
 							/>
 							<Column
 								dataKey='name'
-								flexGrow={1}
+								flexGrow={2}
 								label='Theme'
 								width={100}
 							/>
 							<Column
 								dataKey='minutes'
 								label='Min'
-								width={100}
+								width={50}
+							/>
+							<Column
+								cellRenderer={this.dateRenderer}
+								dataKey='date'
+								label='Date'
+								width={125}
 							/>
 						</Table>
 					)}
