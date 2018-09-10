@@ -6,10 +6,33 @@ import {
 	Column,
 	Table,
 } from 'react-virtualized'
+import { get } from 'lodash'
+import styled from 'react-emotion'
 import Layout from 'components/Layout'
 import './theme-ride-guide.css'
 
+const COACH_PIC_DIMENSION = 40
+
+const CoachPic = styled.img`
+	display: block;
+	height: ${COACH_PIC_DIMENSION}px;
+	margin-bottom: 0;
+	width: ${COACH_PIC_DIMENSION}px;
+`
+
 class RidesPage extends Component {
+	imageCellRenderer = ({ cellData }) => (
+		cellData
+			? (
+				<CoachPic
+					alt=''
+					height={COACH_PIC_DIMENSION}
+					src={`https://${cellData}`}
+					width={COACH_PIC_DIMENSION}
+				/>
+			)
+			: '')
+
 	noRowsRenderer = () => {
 		return <div className='noRows'>No rows</div>
 	}
@@ -25,10 +48,18 @@ class RidesPage extends Component {
 		const {
 			data: {
 				allContentfulRide: {
-					edges: rides,
+					edges,
 				},
 			},
 		} = this.props
+
+		const rides = edges
+			.filter((ride) => ride.node.isVisible)
+			.map((ride) => ({
+				...ride.node,
+				coachName: get(ride, 'node.coach.name', ''),
+				coachImg: get(ride, 'node.coach.profilePhoto.file.url', ''),
+			}))
 
 		return (
 			<Layout>
@@ -40,19 +71,32 @@ class RidesPage extends Component {
 							noRowsRenderer={this.noRowsRenderer}
 							rowClassName={this.rowClassName}
 							rowCount={rides.length}
-							rowGetter={({ index }) => rides[index].node}
+							rowGetter={({ index }) => rides[index]}
 							rowHeight={50}
 							width={width}
 						>
 							<Column
+								cellRenderer={this.imageCellRenderer}
+								dataKey='coachImg'
+								label=''
+								width={40}
+							/>
+							<Column
+								dataKey='coachName'
+								flexGrow={1}
+								label='Coach'
+								width={100}
+							/>
+							<Column
 								dataKey='name'
+								flexGrow={1}
 								label='Theme'
-								width={300}
+								width={100}
 							/>
 							<Column
 								dataKey='minutes'
 								label='Min'
-								width={300}
+								width={100}
 							/>
 						</Table>
 					)}

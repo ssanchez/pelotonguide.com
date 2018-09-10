@@ -12,6 +12,7 @@
     "gatsby-plugin-emotion": "2.0.0-beta.2",
     "gatsby-plugin-react-helmet": "3.0.0-beta.3",
     "gatsby-source-contentful": "2.0.1-beta.9",
+    "lodash": "^4.17.10",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
