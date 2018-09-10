@@ -105,7 +105,13 @@ class RidesPage extends Component {
 								cellRenderer={this.dateRenderer}
 								dataKey='date'
 								label='Date'
-								width={125}
+								width={100}
+							/>
+							<Column
+								dataKey='more'
+								flexGrow={2}
+								label='More'
+								width={100}
 							/>
 						</Table>
 					)}
