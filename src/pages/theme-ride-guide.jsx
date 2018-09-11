@@ -22,7 +22,7 @@ const CoachPic = styled.img`
 `
 
 class RidesPage extends Component {
-	dateRenderer = ({ cellData }) => format(new Date(cellData), 'ddd MM/DD/YY')
+	dateRenderer = ({ cellData }) => format(new Date(cellData), 'MM/DD/YY')
 
 	imageCellRenderer = ({ cellData }) => (
 		cellData
@@ -81,6 +81,7 @@ class RidesPage extends Component {
 							<Column
 								cellRenderer={this.imageCellRenderer}
 								dataKey='coachImg'
+								flexShrink={0}
 								label=''
 								width={40}
 							/>
@@ -98,14 +99,16 @@ class RidesPage extends Component {
 							/>
 							<Column
 								dataKey='minutes'
+								flexShrink={0}
 								label='Min'
-								width={50}
+								width={30}
 							/>
 							<Column
 								cellRenderer={this.dateRenderer}
 								dataKey='date'
+								flexShrink={0}
 								label='Date'
-								width={100}
+								width={60}
 							/>
 							<Column
 								dataKey='more'
