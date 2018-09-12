@@ -24,12 +24,40 @@ const SearchBox = styled.input`
 	border: 1px solid #000;
 `
 class RidesPage extends Component {
-	state = { currentFilter: '' }
+	state = (() => {
+		const {
+			data: {
+				allContentfulRide: {
+					edges,
+				},
+			},
+		} = this.props
+		const rides = edges
+			.filter((ride) => ride.node.isVisible)
+			.map((ride) => ({
+				...ride.node,
+				coachName: get(ride, 'node.coach.name', ''),
+				coachImg: get(ride, 'node.coach.profilePhoto.file.url', ''),
+			}))
+		return {
+			rides,
+			sortedRides: [...rides],
+		}
+	})()
 
 	dateRenderer = ({ cellData }) => format(new Date(cellData), 'MM/DD/YY')
 
 	handleSearch = (e) => {
-		this.setState({ currentFilter: e.target.value.toLowerCase() })
+		const currentFilter = e.target.value.toLowerCase()
+		this.setState((prev) => ({
+			sortedRides: prev.rides
+				.filter((ride) => {
+					const { more, name } = ride
+					return currentFilter === ''
+					|| name.toLowerCase().includes(currentFilter)
+					|| more.toLowerCase().includes(currentFilter)
+				}),
+		}))
 	}
 
 	imageCellRenderer = ({ cellData }) => (
@@ -56,29 +84,7 @@ class RidesPage extends Component {
 	}
 
 	render() {
-		const {
-			data: {
-				allContentfulRide: {
-					edges,
-				},
-			},
-		} = this.props
-		const { currentFilter } = this.state
-
-		const rides = edges
-			.filter((ride) => {
-				const { isVisible, more, name } = ride.node
-				return isVisible && (
-					currentFilter === ''
-					|| name.toLowerCase().includes(currentFilter)
-					|| more.toLowerCase().includes(currentFilter)
-				)
-			})
-			.map((ride) => ({
-				...ride.node,
-				coachName: get(ride, 'node.coach.name', ''),
-				coachImg: get(ride, 'node.coach.profilePhoto.file.url', ''),
-			}))
+		const { sortedRides } = this.state
 
 		return (
 			<Layout>
@@ -90,8 +96,8 @@ class RidesPage extends Component {
 							height={height}
 							noRowsRenderer={this.noRowsRenderer}
 							rowClassName={this.rowClassName}
-							rowCount={rides.length}
-							rowGetter={({ index }) => rides[index]}
+							rowCount={sortedRides.length}
+							rowGetter={({ index }) => sortedRides[index]}
 							rowHeight={50}
 							width={width}
 						>
@@ -118,7 +124,7 @@ class RidesPage extends Component {
 								dataKey='minutes'
 								flexShrink={0}
 								label='Min'
-								width={30}
+								width={40}
 							/>
 							<Column
 								cellRenderer={this.dateRenderer}
