@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import {
 	AutoSizer,
 	Column,
+	SortDirection,
 	Table,
 } from 'react-virtualized'
 import { get } from 'lodash'
@@ -41,6 +42,8 @@ class RidesPage extends Component {
 			}))
 		return {
 			rides,
+			sortBy: 'date',
+			sortDirection: SortDirection.DESC,
 			sortedRides: [...rides],
 		}
 	})()
@@ -83,8 +86,18 @@ class RidesPage extends Component {
 		return index % 2 === 0 ? 'evenRow' : 'oddRow'
 	}
 
-	render() {
+	sort = ({ sortBy, sortDirection }) => {
 		const { sortedRides } = this.state
+		const sorted = sortedRides.sort((a, b) => (a[sortBy] < b[sortBy] ? -1 : 1))
+		this.setState({
+			sortBy,
+			sortDirection,
+			sortedRides: sortDirection === SortDirection.DESC ? sorted.reverse() : sorted,
+		})
+	}
+
+	render() {
+		const { sortBy, sortDirection, sortedRides } = this.state
 
 		return (
 			<Layout>
@@ -99,6 +112,9 @@ class RidesPage extends Component {
 							rowCount={sortedRides.length}
 							rowGetter={({ index }) => sortedRides[index]}
 							rowHeight={50}
+							sort={this.sort}
+							sortBy={sortBy}
+							sortDirection={sortDirection}
 							width={width}
 						>
 							<Column
