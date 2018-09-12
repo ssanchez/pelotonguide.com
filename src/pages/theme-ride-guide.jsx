@@ -20,9 +20,17 @@ const CoachPic = styled.img`
 	margin-bottom: 0;
 	width: ${COACH_PIC_DIMENSION}px;
 `
-
+const SearchBox = styled.input`
+	border: 1px solid #000;
+`
 class RidesPage extends Component {
+	state = { currentFilter: '' }
+
 	dateRenderer = ({ cellData }) => format(new Date(cellData), 'MM/DD/YY')
+
+	handleSearch = (e) => {
+		this.setState({ currentFilter: e.target.value.toLowerCase() })
+	}
 
 	imageCellRenderer = ({ cellData }) => (
 		cellData
@@ -55,9 +63,17 @@ class RidesPage extends Component {
 				},
 			},
 		} = this.props
+		const { currentFilter } = this.state
 
 		const rides = edges
-			.filter((ride) => ride.node.isVisible)
+			.filter((ride) => {
+				const { isVisible, more, name } = ride.node
+				return isVisible && (
+					currentFilter === ''
+					|| name.toLowerCase().includes(currentFilter)
+					|| more.toLowerCase().includes(currentFilter)
+				)
+			})
 			.map((ride) => ({
 				...ride.node,
 				coachName: get(ride, 'node.coach.name', ''),
@@ -66,6 +82,7 @@ class RidesPage extends Component {
 
 		return (
 			<Layout>
+				<SearchBox onChange={this.handleSearch} type='text' />
 				<AutoSizer>
 					{({ height, width }) => (
 						<Table
